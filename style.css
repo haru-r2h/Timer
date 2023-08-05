@@ -4,17 +4,26 @@ body{
 
 img{
     width: 100%;
+    border-radius: 16px;
 }
-#temporizador{
+
+.wallpaper{
+    margin: auto;
+    position: relative;
+    max-width: 500px;    
+}
+
+.contagem{
+    position: absolute;
+    top: 30%;
+    bottom: 50%;
+    left: 10%;
     color: #ffffff;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    position: absolute;
-    top: 15%;
-    left: 10%;
-    
+    font-size: 1.2rem;
 }
 
 #time{
-    font-size: 48px;
+    font-size: 3.5rem;
     font-weight: bold;
 }
