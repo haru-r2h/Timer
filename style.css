@@ -1,20 +1,42 @@
-body{
-    background-color: #1d1d1d;
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 90vh;
+    margin: 16px;
+  }
+
+.lightmode {
+    background-color: white;
+    color: black;
 }
 
-img{
+.darkmode {
+    background-color: #1d1d1d;
+    color: white;
+}
+
+img {
     width: 100%;
     border-radius: 16px;
-    box-shadow: 0 4px 10px #000 ;
+    box-shadow: 0 4px 10px #000;
 }
 
-.wallpaper{
+.wallpaper {
     margin: auto;
     position: relative;
-    max-width: 500px;    
+    max-width: 500px;
 }
 
-.contagem{
+.icon_timer {
+    color: #ffffff;
+    position: absolute;
+    top: 5%;
+    left: 5%;
+}
+
+.contagem {
     position: absolute;
     top: 30%;
     bottom: 50%;
@@ -24,7 +46,24 @@ img{
     font-size: 1.2rem;
 }
 
-#time{
+#time {
     font-size: 3.5rem;
     font-weight: bold;
+}
+
+button[OnClick] {
+    background-color: rgb(17, 145, 196);
+    border: none;
+    border-radius: 8px;
+    display: inline-flex;
+    align-items: center;
+    padding: 10px 24px;
+    gap: 10px;
+    color: #ffffff;
+    font-weight: bold;
+
+}
+
+#icon_light_mode {
+    color: rgb(255, 136, 0);
 }
