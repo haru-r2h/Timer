@@ -40,3 +40,35 @@ function toggleTheme() {
     themeText.textContent = "Midnight Mode";
   }
 }
+
+function calculateCountdown() {
+  const now = new Date();
+  const targetDate = new Date(now);
+
+  targetDate.setHours(8, 0, 0, 0);
+
+  // Define o dia da semana para sexta-feira (5)
+  const friday = 5;
+
+  while (targetDate.getDay() !== friday) {
+    targetDate.setDate(targetDate.getDate() + 1);
+  }
+
+  targetDate.setHours(18, 0, 0, 0);
+
+  const timeDifference = targetDate - now;
+
+  if (timeDifference <= 0) {
+    targetDate.setDate(targetDate.getDate() + 7);
+  }
+
+  const days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
+  const seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
+
+  document.getElementById("countdown").innerHTML = `Faltam ${days} dias, ${hours} horas, ${minutes} minutos e ${seconds} segundos até o fim do expediente na sexta-feira.`;
+}
+
+calculateCountdown(); // Chama a função ao carregar a página
+setInterval(calculateCountdown, 1000); // Atualiza a cada segundo

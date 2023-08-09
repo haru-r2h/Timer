@@ -46,6 +46,13 @@ img {
     font-size: 1.2rem;
 }
 
+.count {
+    color: #ffffff;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 1rem;
+    text-align: center;
+}
+
 #time {
     font-size: 3.5rem;
     font-weight: bold;
