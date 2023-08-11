@@ -73,3 +73,8 @@ button[OnClick] {
 #icon_light_mode {
     color: rgb(255, 136, 0);
 }
+
+.menssagem{
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #ffffff
+}
