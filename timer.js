@@ -1,28 +1,3 @@
-(function () {
-  var start = new Date;
-  start.setHours(18, 0, 0); // 6pm
-
-  function pad(num) {
-    return ("0" + parseInt(num)).slice(-2);
-  }
-
-  function timer() {
-    var now = new Date;
-    if (now > start) { // too late, go to tomorrow
-      start.setDate(start.getDate() + 1);
-    }
-    var remain = ((start - now) / 1000);
-    var hh = pad((remain / 60 / 60) % 60);
-    var mm = pad((remain / 60) % 60);
-    var ss = pad(remain % 60);
-    document.getElementById('time').innerHTML =
-      hh + ":" + mm + ":" + ss;
-    setTimeout(timer, 1000);
-  }
-
-  document.addEventListener('DOMContentLoaded', timer);
-})();
-
 function toggleTheme() {
   var element = document.body;
   var themeIcon = document.getElementById("themeIcon");
@@ -41,34 +16,76 @@ function toggleTheme() {
   }
 }
 
-function calculateCountdown() {
+function calculateCountdown1() {
   const now = new Date();
   const targetDate = new Date(now);
 
+  // Define o horário de início (8:00)
   targetDate.setHours(8, 0, 0, 0);
 
-  // Define o dia da semana para sexta-feira (5)
-  const friday = 5;
+  const hoursPerDay = 10; // horas por dia de trabalho
+  const totalHours = 50;  // total de horas
 
-  while (targetDate.getDay() !== friday) {
+  let remainingHours = totalHours;
+  let daysCount = 0;
+
+  while (remainingHours > 0) {
+    // Verifica se está dentro do horário de trabalho e não é fim de semana
+    if (targetDate.getHours() >= 8 && targetDate.getHours() < 18 &&
+        targetDate.getDay() >= 1 && targetDate.getDay() <= 5) {
+      remainingHours -= hoursPerDay;
+    } else {
+      // Fora do horário de trabalho
+      document.getElementById("countdown1").textContent = "Fora do horário de trabalho.";
+      return;
+    }
+
+    // Avança para o próximo dia
+    targetDate.setDate(targetDate.getDate() + 1);
+    daysCount++;
+  }
+
+  const days = Math.floor(daysCount);
+  const hours = Math.floor(remainingHours);
+  
+  document.getElementById("countdown1").textContent = `Faltam ${days} dias e ${hours} horas para o fim de expediente.`;
+}
+
+function calculateCountdown2() {
+  const now = new Date();
+  const targetDate = new Date(now);
+
+  // Definir o dia da semana para sexta-feira (5)
+  targetDate.setHours(18, 0, 0, 0);
+
+  while (targetDate.getDay() !== 5) {
     targetDate.setDate(targetDate.getDate() + 1);
   }
 
-  targetDate.setHours(18, 0, 0, 0);
+  const currentHour = now.getHours();
+  const currentDay = now.getDay();
 
-  const timeDifference = targetDate - now;
+  // Verifica se está fora do horário de trabalho ou não é sexta-feira
+  if (currentDay >= 1 && currentDay <= 5 && currentHour >= 8 && currentHour < 18) {
+    const timeDifference = targetDate - now;
 
-  if (timeDifference <= 0) {
-    targetDate.setDate(targetDate.getDate() + 7);
+    if (timeDifference <= 0) {
+      targetDate.setDate(targetDate.getDate() + 7);
+    }
+
+    const days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
+
+    document.getElementById("countdown2").textContent = `Faltam ${days} dias, ${hours} horas, ${minutes} minutos e ${seconds} segundos até o fim do expediente na sexta-feira.`;
+  } else {
+    document.getElementById("countdown2").textContent = "Descançar, porque depois tem mais. 😔✊";
   }
-
-  const days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
-  const hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-  const minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
-  const seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
-
-  document.getElementById("countdown").innerHTML = `Faltam ${days} dias, ${hours} horas, ${minutes} minutos e ${seconds} segundos até o fim do expediente na sexta-feira.`;
 }
 
-calculateCountdown(); // Chama a função ao carregar a página
-setInterval(calculateCountdown, 1000); // Atualiza a cada segundo
+calculateCountdown1(); // Chama a função para a primeira contagem regressiva
+setInterval(calculateCountdown1, 1000); // Atualiza a cada segundo
+
+calculateCountdown2(); // Chama a função para a segunda contagem regressiva
+setInterval(calculateCountdown2, 1000); // Atualiza a cada segundo
