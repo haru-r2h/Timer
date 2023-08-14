@@ -14,7 +14,7 @@ function toggleTheme() {
     themeIcon.textContent = "🌞";
     themeText.textContent = "Midnight Mode";
   }
-}
+};
 
 function calculateCountdown1() {
   const now = new Date();
@@ -49,7 +49,7 @@ function calculateCountdown1() {
   const hours = Math.floor(remainingHours);
   
   document.getElementById("countdown1").textContent = `Faltam ${days} dias e ${hours} horas para o fim de expediente.`;
-}
+};
 
 function calculateCountdown2() {
   const now = new Date();
@@ -60,7 +60,7 @@ function calculateCountdown2() {
 
   while (targetDate.getDay() !== 5) {
     targetDate.setDate(targetDate.getDate() + 1);
-  }
+  };
 
   const currentHour = now.getHours();
   const currentDay = now.getDay();
@@ -71,7 +71,7 @@ function calculateCountdown2() {
 
     if (timeDifference <= 0) {
       targetDate.setDate(targetDate.getDate() + 7);
-    }
+    };
 
     const days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
     const hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
@@ -82,7 +82,7 @@ function calculateCountdown2() {
   } else {
     document.getElementById("countdown2").textContent = "Descançar, porque depois tem mais. 😔✊";
   }
-}
+};
 
 calculateCountdown1(); // Chama a função para a primeira contagem regressiva
 setInterval(calculateCountdown1, 1000); // Atualiza a cada segundo
