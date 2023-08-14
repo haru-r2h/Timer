@@ -18,37 +18,46 @@ function toggleTheme() {
 
 function calculateCountdown1() {
   const now = new Date();
-  const targetDate = new Date(now);
+  
+  // Verifica se o dia atual é uma segunda-feira (0 = domingo, 1 = segunda-feira, ...)
+  if (now.getDay() === 1) {
+    const targetDate = new Date(now);
 
-  // Define o horário de início (8:00)
-  targetDate.setHours(8, 0, 0, 0);
+    // Define o horário de início (8:00)
+    targetDate.setHours(8, 0, 0, 0);
 
-  const hoursPerDay = 10; // horas por dia de trabalho
-  const totalHours = 50;  // total de horas
+    const hoursPerDay = 10; // horas por dia de trabalho
+    const totalHours = 50;  // total de horas
 
-  let remainingHours = totalHours;
-  let daysCount = 0;
+    let remainingTime = totalHours * 60 * 60 * 1000; // tempo total em milissegundos
+    let daysCount = 0;
 
-  while (remainingHours > 0) {
-    // Verifica se está dentro do horário de trabalho e não é fim de semana
-    if (targetDate.getHours() >= 8 && targetDate.getHours() < 18 &&
-        targetDate.getDay() >= 1 && targetDate.getDay() <= 5) {
-      remainingHours -= hoursPerDay;
-    } else {
-      // Fora do horário de trabalho
-      document.getElementById("countdown1").textContent = "Fora do horário de trabalho.";
-      return;
+    while (remainingTime > 0) {
+      // Verifica se está dentro do horário de trabalho e não é fim de semana
+      if (targetDate.getHours() >= 8 && targetDate.getHours() < 18 &&
+          targetDate.getDay() >= 1 && targetDate.getDay() <= 5) {
+        remainingTime -= hoursPerDay * 60 * 60 * 1000; // desconta o tempo de trabalho diário em milissegundos
+      } else {
+        // Fora do horário de trabalho
+        document.getElementById("countdown1").textContent = "Fora do horário de trabalho.";
+        return;
+      }
+
+      // Avança para o próximo dia
+      targetDate.setDate(targetDate.getDate() + 1);
+      daysCount++;
     }
 
-    // Avança para o próximo dia
-    targetDate.setDate(targetDate.getDate() + 1);
-    daysCount++;
-  }
+    const days = Math.floor(daysCount);
+    const hours = Math.floor(remainingTime / (60 * 60 * 1000));
+    const minutes = Math.floor((remainingTime % (60 * 60 * 1000)) / (60 * 1000));
+    const seconds = Math.floor((remainingTime % (60 * 1000)) / 1000);
 
-  const days = Math.floor(daysCount);
-  const hours = Math.floor(remainingHours);
-  
-  document.getElementById("countdown1").textContent = `Faltam ${days} dias e ${hours} horas para o fim de expediente.`;
+    document.getElementById("countdown1").textContent = `Faltam ${days} dias, ${hours} horas, ${minutes} minutos e ${seconds} segundos para o fim de expediente.`;
+  } else {
+    // Não é segunda-feira
+    document.getElementById("countdown1").textContent = "Esta contagem é válida apenas para as segundas-feiras.";
+  }
 };
 
 function calculateCountdown2() {
