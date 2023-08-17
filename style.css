@@ -73,3 +73,7 @@ button[OnClick] {
 #icon_light_mode {
     color: rgb(255, 136, 0);
 }
+
+#contdown1 {
+    font-size: 2.5rem;
+}

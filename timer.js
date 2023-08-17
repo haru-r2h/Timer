@@ -43,9 +43,13 @@ function calculateCountdown1() {
     const minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
     const seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
 
-    document.getElementById("countdown1").textContent = `Faltam ${hours}:${minutes}:${seconds} até o fim do expediente.`;
+    document.getElementById("countdown1_faltam").textContent = "Faltam";
+    document.getElementById("countdown1").textContent = `${hours}:${minutes}:${seconds}`;
+    document.getElementById("countdown1_expediente").textContent = "até o fim do expediente.";
   } else {
-    document.getElementById("countdown1").textContent = "Descançar, porque depois tem mais. 😔✊";
+    document.getElementById("countdown1_faltam").textContent = "";
+    document.getElementById("countdown1").textContent = "";
+    document.getElementById("countdown1_expediente").textContent = "Descançar, porque depois tem mais. 😔✊";
   }
 };
 
