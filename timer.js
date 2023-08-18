@@ -91,3 +91,5 @@ setInterval(calculateCountdown1, 1000); // Atualiza a cada segundo
 
 calculateCountdown2(); // Chama a função para a segunda contagem regressiva
 setInterval(calculateCountdown2, 1000); // Atualiza a cada segundo
+
+console.log(new Date().toString());
