@@ -107,10 +107,10 @@ function hoje() {
   let todayUppercase = today.charAt(0).toUpperCase() + today.slice(1);
 
   if (today === 'sexta-feira') {
-    document.getElementById("hoje").textContent = "🍻Sextou!🍻";
+    document.getElementById("hoje").textContent = "🍻 Sextou! 🍻";
   }
   else {
-    document.getElementById("hoje").textContent = `${todayUppercase}`;
+    document.getElementById("hoje").textContent = `📆 ${todayUppercase} 📆`;
   }
 }
 
