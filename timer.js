@@ -38,20 +38,24 @@ function calculateCountdown1() {
       targetDate.setDate(targetDate.getDate() + 7);
     };
 
-    const days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
     const hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
     const minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
     const seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
 
     document.getElementById("countdown1_faltam").textContent = "Faltam";
-    document.getElementById("countdown1").textContent = `${hours}:${minutes}:${seconds}`;
+    document.getElementById("countdown1").textContent = `${formatNumber(hours)}:${formatNumber(minutes)}:${formatNumber(seconds)}`;
     document.getElementById("countdown1_expediente").textContent = "até o fim do expediente.";
   } else {
     document.getElementById("countdown1_faltam").textContent = "";
     document.getElementById("countdown1").textContent = "";
-    document.getElementById("countdown1_expediente").textContent = "Descançar, porque depois tem mais. 😔✊";
+    document.getElementById("countdown1_expediente").textContent = "Bom descanço!😉";
   }
-};
+}
+
+// Formata as horas para HH:MM:SS
+function formatNumber(number) {
+  return number < 10 ? `0${number}` : `${number}`;
+}
 
 function calculateCountdown2() {
   const now = new Date();
@@ -84,7 +88,7 @@ function calculateCountdown2() {
   } else {
     document.getElementById("countdown2").textContent = "Descançar, porque depois tem mais. 😔✊";
   }
-};
+}
 
 calculateCountdown1(); // Chama a função para a primeira contagem regressiva
 setInterval(calculateCountdown1, 1000); // Atualiza a cada segundo
@@ -92,4 +96,41 @@ setInterval(calculateCountdown1, 1000); // Atualiza a cada segundo
 calculateCountdown2(); // Chama a função para a segunda contagem regressiva
 setInterval(calculateCountdown2, 1000); // Atualiza a cada segundo
 
-console.log(new Date().toString());
+// Define o dia da semana
+const dateOption = { weekday: 'long' };
+let today = new Date().toLocaleDateString('pt-br', dateOption);
+console.log(today);
+
+function hoje() {
+  const dateOption = { weekday: 'long' };
+  let today = new Date().toLocaleDateString('pt-br', dateOption);
+  let todayUppercase = today.charAt(0).toUpperCase() + today.slice(1);
+
+  if (today === 'sexta-feira') {
+    document.getElementById("hoje").textContent = "🍻Sextou!🍻";
+  }
+  else {
+    document.getElementById("hoje").textContent = `${todayUppercase}`;
+  }
+}
+
+hoje()
+
+// Troca os GIFs por dia da semana
+const wallpaperElement = document.getElementById("background-gif");
+
+function setWallpaper(dayOfWeek) {
+  const gifs = {
+    'segunda-feira': 'image/icegif-2.gif',
+    'terça-feira': 'image/YQgT.gif',
+    'quarta-feira': 'image/icegif-2.gif',
+    'quinta-feira': 'image/icegif-2.gif',
+    'sexta-feira': 'image/icegif-2.gif',
+    'sábado': 'image/sleeping.gif',
+    'domingo': 'image/sleeping.gif'
+  };
+
+  wallpaperElement.style.backgroundImage = `url(${gifs[dayOfWeek]})`;
+}
+
+setWallpaper(today)
