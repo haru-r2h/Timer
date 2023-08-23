@@ -110,7 +110,7 @@ function hoje() {
     document.getElementById("hoje").textContent = "🍻 Sextou! 🍻";
   }
   else {
-    document.getElementById("hoje").textContent = `📅 ${todayUppercase} 📅`;
+    document.getElementById("hoje").textContent = `🗓 ${todayUppercase} 🗓`;
   }
 }
 
