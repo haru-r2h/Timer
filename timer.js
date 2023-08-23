@@ -110,7 +110,7 @@ function hoje() {
     document.getElementById("hoje").textContent = "🍻 Sextou! 🍻";
   }
   else {
-    document.getElementById("hoje").textContent = `🗓 ${todayUppercase} 🗓`;
+    document.getElementById("hoje").textContent = `📅 ${todayUppercase} 📅`;
   }
 }
 
@@ -123,9 +123,9 @@ function setWallpaper(dayOfWeek) {
   const gifs = {
     'segunda-feira': 'image/icegif-2.gif',
     'terça-feira': 'image/YQgT.gif',
-    'quarta-feira': 'image/icegif-2.gif',
-    'quinta-feira': 'image/icegif-2.gif',
-    'sexta-feira': 'image/icegif-2.gif',
+    'quarta-feira': 'image/super_mario.gif',
+    'quinta-feira': 'image/city.gif',
+    'sexta-feira': 'image/bar.gif',
     'sábado': 'image/sleeping.gif',
     'domingo': 'image/sleeping.gif'
   };
