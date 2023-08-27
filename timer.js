@@ -48,7 +48,7 @@ function calculateCountdown1() {
   } else {
     document.getElementById("countdown1_faltam").textContent = "";
     document.getElementById("countdown1").textContent = "";
-    document.getElementById("countdown1_expediente").textContent = "Bom descanço!😉";
+    document.getElementById("countdown1_expediente").textContent = "😉 Bom descanço!";
   }
 }
 
@@ -110,7 +110,7 @@ function hoje() {
     document.getElementById("hoje").textContent = "🍻 Sextou! 🍻";
   }
   else {
-    document.getElementById("hoje").textContent = `📅 ${todayUppercase} 📅`;
+    document.getElementById("hoje").textContent = `📆 ${todayUppercase} 📆`;
   }
 }
 
