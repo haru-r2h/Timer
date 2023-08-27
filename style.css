@@ -114,34 +114,3 @@ button[OnClick] {
     }
 
 }
-
-@media only screen and (min-width:1280px) and (orientation: landscape) {
-    body {
-        display: flex;
-        flex-wrap: wrap;
-        height: 50vh;
-        align-content: center;
-        margin-top: 10%;
-        margin-bottom: 10%;
-    }
-
-    #hoje {
-        width: 40%;
-    }
-
-    .count {
-        float: left;
-        width: 40%;
-    }
-
-    button[OnClick] {
-        float: left;
-        width: 20%;
-    }
-
-    .wallpaper {
-        float: right;
-        height: 300px;
-        width: 50%;
-    }
-}
